@@ -1,0 +1,15 @@
+version:  '3'
+services:
+  datascience:
+      image: jupyter/datascience-notebook:ubuntu-20.04
+      env_file:
+        - .env
+      volumes:
+        - ./notebooks:/home/jovyan/work
+        - ./datasets:/home/jovyan/work/datasets
+        - ./modules:/home/jovyan/work/modules
+        - ./certs:/etc/ssl/notebook
+      ports:
+        - ${PORT}:8888
+      container_name:   jupyter_notebook
+      command: "start-notebook.sh"
